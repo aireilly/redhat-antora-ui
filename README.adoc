@@ -1,4 +1,4 @@
-= Couchbase Documentation UI
+= Red Hat Documentation UI for Antora
 // Variables:
 :current-release: prod-163
 // Settings:
@@ -17,9 +17,9 @@ ifdef::env-github[]
 :badges:
 endif::[]
 // Project URIs:
-:project-repo-name: couchbase/docs-ui
+:project-repo-name: aireilly/redhat-antora-ui
 :url-project: https://github.com/{project-repo-name}
-:url-site: https://docs.couchbase.com
+:url-site: https://docs.redhat.com
 :url-repo: git@github.com:{project-repo-name}.git
 //:url-preview: https://cb-docs-ui.netlify.com
 :url-preview: https://cb-docs-ui.netlify.app
@@ -31,7 +31,7 @@ endif::[]
 :url-node: https://nodejs.org
 :url-nvm: https://github.com/creationix/nvm
 :url-nvm-install: {url-nvm}#installation
-:url-couchbase: https://couchbase.com
+:url-redhat: https://redhat.com
 
 ifdef::badges[]
 image:https://img.shields.io/static/v1?label=release&amp;message={current-release}&amp;color=blue[Latest Release,link={url-project}/releases/download/{current-release}/ui-bundle.zip,format=svg]
@@ -39,13 +39,15 @@ endif::[]
 
 toc::[]
 
-This project is used to develop and distribute the UI for the {url-site}[Couchbase documentation site].
+This project is used to develop and distribute the UI for the {url-site}[Red Hat documentation site].
 The UI bundle this project produces is intended to be used with {url-antora}[Antora].
 The UI bundle contains the HTML templates (layouts, partials, and helpers), CSS, JavaScript, fonts, and (site-wide) images.
 As such, it provides both the visual theme and user interactions for the documentation site.
 The rest of the material for the documentation site comes from the content repositories.
 
 You can view a preview of this UI online at {url-preview}.
+
+The theme is based on https://github.com/redhat/docs-ui.
 
 == Usage
 
@@ -133,7 +135,7 @@ Clone the UI project using git:
  $ git clone {url-project} &&
    cd "`basename $_`"
 
-The example above clones the Couchbase docs UI project and then switches to the project folder on your filesystem.
+The example above clones the Red Hat docs UI project and then switches to the project folder on your filesystem.
 Stay in this project folder when executing all subsequent commands.
 
 Use npm to install the project's dependencies inside the project.
@@ -245,7 +247,7 @@ For example, the home page declares the following document attribute in the Asci
 
 [source,asciidoc]
 ----
-= Welcome to the Couchbase Docs!
+= Welcome to the Red Hat Docs!
 :page-layout: home
 ----
 
@@ -331,7 +333,7 @@ You can create as many of these roles as you like simply by adding CSS scoped to
 
 === Tabs
 
-The playbook for the Couchbase documentation includes a tabs block extension.
+The playbook for the Red Hat documentation includes a tabs block extension.
 The extension takes care of converting the AsciiDoc for the tabs to HTML.
 The UI provides the interaction (JavaScript) and styles (CSS) that power these tabs.
 
@@ -395,13 +397,13 @@ The URL for the "View Latest" button is computed by the latest-page-url helper.
 Here's the logic that the helper uses:
 
 * If the current page is found in the latest version, the latest page URL resolves to the URL of that page.
-For example, the latest page URL for https://docs.couchbase.com/server/6.0/introduction/intro.html resolves to https://docs.couchbase.com/server/6.5/introduction/intro.html (assuming 6.5 is the latest version)
+For example, the latest page URL for https://docs.redhat.com/server/6.0/introduction/intro.html resolves to https://docs.redhat.com/server/6.5/introduction/intro.html (assuming 6.5 is the latest version)
  ** If the SUPPORTS_CURRENT_URL=true environment variable is set, the version segment in the URL is replaced with the word "current".
-For example, the latest page URL for https://docs.couchbase.com/server/6.0/introduction/intro.html resolves to https://docs.couchbase.com/server/current/introduction/intro.html
+For example, the latest page URL for https://docs.redhat.com/server/6.0/introduction/intro.html resolves to https://docs.redhat.com/server/current/introduction/intro.html
 * If the current page is not found in the latest version, but the page is claimed by an alias, the latest page URL resolves to the URL of the page to which the alias points.
-For example, the latest page URL for https://docs.couchbase.com/server/5.5/admin/ui-intro.html resolves to https://docs.couchbase.com/server/6.5/manage/management-overview.html (assuming 6.5 is the latest version)
+For example, the latest page URL for https://docs.redhat.com/server/5.5/admin/ui-intro.html resolves to https://docs.redhat.com/server/6.5/manage/management-overview.html (assuming 6.5 is the latest version)
  ** If the SUPPORTS_CURRENT_URL=true environment variable is set, the version segment in the URL is replaced with the word "current".
-For example, the latest page URL for https://docs.couchbase.com/server/5.5/admin/ui-intro.html resolves to https://docs.couchbase.com/server/current/manage/management-overview.html
+For example, the latest page URL for https://docs.redhat.com/server/5.5/admin/ui-intro.html resolves to https://docs.redhat.com/server/current/manage/management-overview.html
 * If neither the current page or an alias is found in the latest version, the latest page URL resolves to the component start page.
  ** If the SUPPORTS_CURRENT_URL=true environment variable is set, the version segment in the URL is replaced with the word "current".
 
@@ -418,15 +420,15 @@ Here's the logic that the helper uses:
 
 * If the site.url is not set to an absolute path, no value is returned.
 * If the current page is found in the latest version, the canonical URL resolves to the URL of that page.
-For example, the canonical URL for https://docs.couchbase.com/server/6.0/introduction/intro.html resolves to https://docs.couchbase.com/server/6.5/introduction/intro.html (assuming 6.5 is the latest version)
+For example, the canonical URL for https://docs.redhat.com/server/6.0/introduction/intro.html resolves to https://docs.redhat.com/server/6.5/introduction/intro.html (assuming 6.5 is the latest version)
  ** If the SUPPORTS_CURRENT_URL=true environment variable is set, the version segment in the URL is replaced with the word "current".
-For example, the canonical URL for https://docs.couchbase.com/server/6.0/introduction/intro.html resolves to https://docs.couchbase.com/server/current/introduction/intro.html
+For example, the canonical URL for https://docs.redhat.com/server/6.0/introduction/intro.html resolves to https://docs.redhat.com/server/current/introduction/intro.html
 * If the current page is not found in the latest version, but the page is claimed by an alias, the canonical URL resolves to the URL of the page to which the alias points.
-For example, the canonical URL for https://docs.couchbase.com/server/5.5/admin/ui-intro.html resolves to https://docs.couchbase.com/server/6.5/manage/management-overview.html (assuming 6.5 is the latest version)
+For example, the canonical URL for https://docs.redhat.com/server/5.5/admin/ui-intro.html resolves to https://docs.redhat.com/server/6.5/manage/management-overview.html (assuming 6.5 is the latest version)
  ** If the SUPPORTS_CURRENT_URL=true environment variable is set, the version segment in the URL is replaced with the word "current".
-For example, the canonical URL for https://docs.couchbase.com/server/5.5/admin/ui-intro.html resolves to https://docs.couchbase.com/server/current/manage/management-overview.html
+For example, the canonical URL for https://docs.redhat.com/server/5.5/admin/ui-intro.html resolves to https://docs.redhat.com/server/current/manage/management-overview.html
 * If neither the current page or an alias is found in the latest version, the current URL resolves to the newest version of the page (which could be the current page).
-For example, the canonical URL for https://docs.couchbase.com/server/4.0/architecture/cluster-ram-quotas.html resolves to https://docs.couchbase.com/server/4.1/architecture/cluster-ram-quotas.html
+For example, the canonical URL for https://docs.redhat.com/server/4.0/architecture/cluster-ram-quotas.html resolves to https://docs.redhat.com/server/4.1/architecture/cluster-ram-quotas.html
  ** If the SUPPORTS_CURRENT_URL=true environment variable is set, it has no affect on this case.
 
 If the current page is in the archive site and the latest version is in the production site, then the canonical URL will point to the production site.
@@ -492,7 +494,7 @@ In the CI job configuration, covered in the next section, you'll learn how this 
 === CI Job Configuration
 
 Jenkins is used to execute the CI job that publishes the UI bundle.
-The job is named *docs-ui* and can be found under the *Antora* folder in the Jenkins server managed by the Couchbase docs team.
+The job is named *docs-ui* and can be found under the *Antora* folder in the Jenkins server managed by the Red Hat docs team.
 This section describes in detail how that job has been configured in case it must be recreated.
 
 The release is performed by the cb-docs-robot GitHub account, which interacts with GitHub entirely using the GitHub API.
@@ -589,5 +591,5 @@ As such, use of the software is granted under the terms of the https://www.mozil
 
 === Branding and Design
 
-Copyright (C) {url-couchbase}[Couchbase] 2018-2021.
+Copyright (C) {url-redhat}[Red Hat] 2018-2021.
 All rights reserved.

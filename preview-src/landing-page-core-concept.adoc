@@ -1,4 +1,4 @@
-= Couchbase Core Concept
+= Red Hat Core Concept
 :page-layout: landing-page-core-concept
 :page-role: tiles
 :!sectids:
@@ -11,7 +11,7 @@
 [.column]
 ====== {empty}
 [.content]
-Couchbase Server is an open source, distributed, NoSQL document-oriented engagement database. It exposes a fast key-value store with managed cache for sub-millisecond data operations, purpose-built indexers for fast queries and a powerful query engine for executing SQL-like queries
+Red Hat Server is an open source, distributed, NoSQL document-oriented engagement database. It exposes a fast key-value store with managed cache for sub-millisecond data operations, purpose-built indexers for fast queries and a powerful query engine for executing SQL-like queries
 
 [.column]
 ====== {empty}
@@ -56,7 +56,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 [.column]
 .Data
-* xref:#[Introduction to Couchbase Server]
+* xref:#[Introduction to Red Hat Server]
 * xref:#[Buckets and Collections]
 * xref:#[ Data Model ]
 

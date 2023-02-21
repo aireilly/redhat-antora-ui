@@ -1,578 +1,256 @@
-= Monitoring Statistics
-:doctype: book
-:page-edition: Enterprise Edition
-:page-status: Developer Preview
-:page-topic-type: guide
-:page-pagination:
-:page-toclevels: 2
+= Red Hat Product XYZ Docs
 
-// The following should be global document attributes
-:url-edition: https://www.couchbase.com/products/editions
-:enterprise: {url-edition}[ENTERPRISE EDITION, role="add-ext-icon"]
-:community: {url-edition}[COMMUNITY EDITION]
-:developer-preview: Developer Preview
-:sqlpp: SQL++
-//:page-status: pass:[&ge; 5.5]
+:library: Asciidoctor
+ifdef::asciidoctor[]
+:source-highlighter: coderay
+endif::asciidoctor[]
+:idprefix:
+:stylesheet: asciidoc.css
 
-[abstract]
-From the *Data Bucket* menu, information and statistics about buckets and nodes is displayed for the entire Couchbase Server cluster.
-The information is aggregated from all the icon:server[] nodes within the configured cluster for the selected bucket.
+[role='lead']
+This is a demonstration of {library}. And this is the preamble of this document.
 
-From the menu:Couchbase Web Console[Buckets] menu, click the menu:Statistics[] link for each bucket.
+[[purpose]]
+.Purpose
+****
+This document exercises many of the features of AsciiDoc to test the {library} implementation.
+****
 
-.Here is some {sqlpp}
-====
-[source,sqlpp]
+[source,terminal]
 ----
-SELECT * FROM `travel-sample` WHERE type = "airline" LIMIT 1;
-CREATE PRIMARY INDEX ON `users` WITH {"defer_build": true};
-BUILD INDEX ON `users`(`#primary`, `ix_name`, `ix_email`);
-----
-====
-
-.Here is some W3 Extended Backus-Naur Format
-====
-[source,ebnf]
-----
-index-pair ::= '"' 'indexes' '"' ':' ( 'null'
-                                     | '"' index '"'
-                                     | '[' '"' index '"' ( ',' '"' index '"' )* ']' )
-----
-====
-
-[[bucket-selection]]Bucket Selection::
-The [.ui]*Buckets* selection list lets you select which of the buckets configured on your cluster is to be used as the basis for the graph display.
-The statistics shown are aggregated over the whole cluster for the <<bucket-selection,selected bucket>>.
-
-Interval Selection::
-Periodic Selection::
-+
---
-The [.ui]*Interval* selection at the top of the main graph changes interval display for all graphs displayed on the page.
-
-As the selected interval increases, the amount of statistical data displayed will depend on how long your cluster has been running.
---
-
-Click the image:git-branch.svg[,16,role=icon] icon at the bottom of the editor to select a branch.
-Then click the image:arrow-small-down.svg[,16,role=icon]image:arrow-small-up.svg[,16,role=icon] icons to open the pull/push dialog.
-
-== Try It Now
-
-This section demonstrates the interactive, try it now feature of the docs.
-
-[source.try-it,ruby]
-----
-require 'couchbase'
-
-options = Couchbase::Cluster::ClusterOptions.new
-options.authenticate('username', 'password')
-cluster = Couchbase::Cluster.connect('couchbase://127.0.0.1', options)
-
-bucket = cluster.bucket('travel-sample')
-collection = bucket.default_collection
-
-begin
-  get_result = collection.get('airline_10')
-  puts get_result.content
-rescue Couchbase::Error::DocumentNotFound
-  puts 'Document not found!'
-end
+$ ls
 ----
 
-[source.try-it,java]
+[source,yaml]
 ----
-import com.couchbase.client.core.error.DocumentNotFoundException;
-import com.couchbase.client.java.*;
-import com.couchbase.client.java.kv.*;
+---
+ doe: "a deer, a female deer"
+ ray: "a drop of golden sun"
+ pi: 3.14159
+ xmas: true
+ french-hens: 3
+ calling-birds:
+   - huey
+   - dewey
+   - louie
+   - fred
+ xmas-fifth-day:
+   calling-birds: four
+   french-hens: 3
+   golden-rings: 5
+   partridges:
+     count: 1
+     location: "a pear tree"
+   turtle-doves: two
+----
 
-public class StartUsing {
-  public static void main(String[] args) {
-    var cluster = Cluster.connect(
-      "couchbase://127.0.0.1", "username", "password"
-    );
-
-    var bucket = cluster.bucket("travel-sample");
-    var collection = bucket.defaultCollection();
-
-    try {
-      var result = collection.get("airline_10");
-      System.out.println(result.toString());
-
-    } catch (DocumentNotFoundException ex) {
-      System.out.println("Document not found!");
+[source,json]
+----
+{
+    "glossary": {
+        "title": "example glossary",
+        "GlossDiv": {
+            "title": "S",
+            "GlossList": {
+                "GlossEntry": {
+                    "ID": "SGML",
+                    "SortAs": "SGML",
+                    "GlossTerm": "Standard Generalized Markup Language",
+                    "Acronym": "SGML",
+                    "Abbrev": "ISO 8879:1986",
+                    "GlossDef": {
+                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                        "GlossSeeAlso": ["GML", "XML"]
+                    },
+                    "GlossSee": "markup"
+                }
+            }
+        }
     }
-  }
 }
 ----
 
-== Individual Bucket Monitoring
-
-Bucket monitoring within the Couchbase Web Console has been updated to show additional detailed information.
-
-<<summary-stats,Summary>>::
-The summary section provides a quick overview of the cluster activity.
-
-<<server-stats,Server Resources>>::
-This section provides information on the server resources across the cluster.
-
-Installation will vary based on your operation system.
-
-// NOTE this HTML is generated by the tabs-block extension; never type this in a document directly!
-++++
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_ubuntu"></a>Ubuntu</p>
-</li>
-<li>
-<p><a id="tabset1_red-hat"></a>Red Hat</p>
-</li>
-<li>
-<p><a id="tabset1_debian"></a>Debian</p>
-</li>
-<li>
-<p><a id="tabset1_test1"></a>Test1</p>
-</li>
-<li>
-<p><a id="tabset1_test2"></a>Test2</p>
-</li>
-<li>
-<p><a id="tabset1_test3"></a>Test3</p>
-</li>
-<li>
-<p><a id="tabset1_test4"></a>Test4</p>
-</li>
-<li>
-<p><a id="tabset1_test5"></a>Test5</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane is-active" aria-labelledby="tabset1_ubuntu">
-<div class="paragraph">
-<p>Content for Ubuntu tab.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_red-hat">
-<div class="paragraph">
-<p>Content for Red Hat tab.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_debian">
-<div class="paragraph">
-<p>Content for Debian tab.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_test1">
-<div class="paragraph">
-<p>Content for test 1 tab.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_test2">
-<div class="paragraph">
-<p>Content for test 2 tab.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_test3">
-<div class="paragraph">
-<p>Content for test 3 tab.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_test4">
-<div class="paragraph">
-<p>Content for test 4 tab.</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_test5">
-<div class="paragraph">
-<p>Content for test 5 tab.</p>
-</div>
-</div>
-</div>
-</div>
-++++
-
-
-== Admonition Blocks
-
-Let's take a brief pause to look at some admonition blocks.
-
-.What the admonition?
-****
-An admonition is a way to nudge the user to pay attention to information that is not to be missed.
-It might be a gentle suggestion in the form of a note or tip or something more serious like a warning.
-****
-
-[TIP]
-This oughta do it!
+And here:
 
 [NOTE]
 ====
-Oh, you've been down _this_ road before.
-====
-
-[WARNING]
-====
-Watch out!
+This is a note. If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.
 ====
 
 [CAUTION]
 ====
-I wouldn't try that if I were you.
+Caution! If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.
+====
+
+[TIP]
+====
+Tip! If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.
+====
+
+[WARNING]
+====
+Warning! If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.
 ====
 
 [IMPORTANT]
 ====
-Don't forget this step!
+Important! If you want the output to look familiar, copy (or link) the AsciiDoc stylesheet, asciidoc.css, to the output directory.
 ====
 
-.Enterprise Edition Only
-[IMPORTANT]
-This feature is only available in the Enterprise Edition.
+.Inline markup
+* single quotes around a phrase place 'emphasis'
+* astericks around a phrase make the text *bold*
+* double astericks around one or more **l**etters in a word make those letters bold
+* double underscore around a __sub__string in a word emphasize that substring
+* use carrots around characters to make them ^super^script
+* use tildes around characters to make them ~sub~script
+ifdef::basebackend-html[]
+* to pass through +++<u>HTML</u>+++ directly, surround the text with triple plus
+endif::basebackend-html[]
+ifdef::basebackend-docbook[]
+* to pass through +++<constant>XML</constant>+++ directly, surround the text with triple plus
+endif::basebackend-docbook[]
 
-.Key Points to Remember
-[TIP#key-points]
-====
-* Write
-* This
-* Down
+.Kitty
+image::kitty.png[]
 
-If you installed the CLI and the default site generator globally, you can upgrade both of them with the same command.
+// separate two adjacent lists using a line comment (only the leading // is required)
 
- $ npm i -g @antora/cli @antora/site-generator-default
-====
+- characters can be escaped using a {backslash}
+* for instance, you can escape a quote inside emphasized text like 'Here\'s Johnny!'
+- you can safely use reserved XML characters like <, > and &, which are escaped when rendering
+- force a space{sp}between inline elements using the \{sp} attribute
+- hold text together with an intrinsic non-breaking{nbsp}space attribute, \{nbsp}
+- handle words with unicode characters like in the name Gregory Romé
+- claim your copyright (C), registered trademark (R) or trademark (TM)
 
-= Edition and Status Labels
+You can write text http://example.com[with inline links], optionally{sp}using an explicit link:http://example.com[link prefix]. In either case, the link can have a http://example.com?foo=bar&lang=en[query string].
 
-You can use spans to add the `edition` and `status` labels to a section, subsection, or paragraph within a document.
+If you want to break a line +
+just end it in a {plus} sign +
+and continue typing on the next line.
 
-Status labels should only be used to mark that a section is beta or developer preview.
-You could also use it to mark new features, but _only within the version in which the feature was introduced_ -- no-one using version 6.5 needs to know that a feature was introduced in version 4.1.
+=== Lists Upon Lists
 
-== Labels for a Section
+.Adjacent lists
+* this list
+* should join
 
-[.labels]
-[.edition]##{enterprise}##[.status]##{developer-preview}##
+* to have
+* four items
 
-To create an edition label, use a span with the role `edition`.
-To create a status label, use a span with the role `status`.
+[[numbered]]
+.Numbered lists
+. These items
+. will be auto-numbered
+.. and can be nested
+. A numbered list can nest
+* unordered
+* list
+* items
 
-To add edition and status labels at the start of a section or block, place the required spans in a single paragraph on its own.
-To add the "speech bubble tail" above the labels, the spans should be placed in a paragraph with the role `labels`.
+.Statement
+I swear I left it in 'Guy\'s' car. Let\'s go look for it.
 
-Global document attributes are available to insert the content for an edition or status label.
-The global document attribute `&lbrace;enterprise&rbrace;` inserts the content for an enterprise edition label.
-The global document attribute `&lbrace;community&rbrace;` inserts the content for a community edition label.
+[[defs]]
+term::
+  definition
+line two
+[[another_term]]another term::
 
-If you need to place edition and status labels together, do not insert a space between them.
-In this case, you must use the "inline" span markup, i.e. delimit the spans with double hash marks `&num;&num;...&num;&num;`.
+  another definition, which can be literal (indented) or regular paragraph
 
-== Labels for a Group of Paragraphs within a Section
+This should be a standalone paragraph, not grabbed by the definition list.
 
-Here is another section.
-Note that this section does not have any edition or status labels at the start.
+[[nested]]
+* first level
+written on two lines
+* first level
++
+....
+with this literal text
+....
++
+** second level
+*** third level
+- fourth level
+* back to +
+first level
 
-****
-[.edition]#{enterprise}#
+// this is just a comment
 
-You can use a sidebar without a title.
-This sidebar shows how you can use the inline label markup in a paragraph on its own to add an edition label or a status label to a collection of blocks which does not form a complete section.
+Let's make a horizontal rule...
 
-(You should avoid mixing up a section-level labels and block-level labels within one section; it would get too confusing.)
+then take a break.
 
-NOTE: Sidebars can contain admonitions.
+////
+We'll be right with you...
 
-. Here is a list within the sidebar.
+after this brief interruption.
+////
 
-. The edition label at the start of this sidebar clearly applies to the whole content of this sidebar.
-****
+== We're back!
 
-Outside the sidebar again.
-The user can clearly see that the edition label within the sidebar does _not_ apply to this paragraph.
+Do you feel safer with the tiger in a box?
 
-== Labels for an Individual Item
-
-Here is another section.
-This section does not have any edition or status labels at the start.
-
-* This is the first item in a list.
-
-* [.edition]#{community}# This is the second item in a list.
-This item is only applicable to community edition.
-
-* This is the third item in the list.
-
-* This is the last item in the list.
-
-== Glossaries
-
-This is allows you to build a list of terms and their associated meanings:
-
-[horizontal]
-
-*Term1*:: And this is what it means.
-
-*Term2*:: The meaning for Term 2. Also see what it looks like when the explanation of the term is quite long. The term and the explanation should align at the top to make them easier to read.
-
-*Term3*:: The meaning
-
-[#summary-stats]
-== Bucket Monitoring -- Summary Statistics
-
-The summary section is designed to provide a quick overview of the cluster activity.
-
-image::stats-summary.png[]
-
-The following statistics are available:
-
-.Summary statistics
-[cols="1,3"]
-|===
-| Statistic | Description
-
-| ops per second
-| The total number of operations per second on this bucket.
-
-| cache miss ratio
-| Ratio of reads per second to this bucket which required a read from disk rather than RAM.
-|===
-
-.Summary statistics without title, grid or frame
-[cols="1,3",frame=none, grid=none]
-|===
-
-| ops per second
-| The total number of operations per second on this bucket.
-
-| cache miss ratio
-| Ratio of reads per second to this bucket which required a read from disk rather than RAM.
-|===
-
-The `stale=false` view query argument has been enhanced.
-When an application sends a query that has the `stale` parameter set to false, the application receives all recent changes to the documents, including changes that haven't yet been persisted to disk.
-
-[title="Best practice"]
-TIP: For better scalability and throughput, we recommend that you set the value of the `stale` parameter to `ok`.
-With the stream-based views, data returned when `stale` is set to `ok` is closer to the key-value data, even though it might not include all of it.
-
-[#server-stats]
-== Monitoring Server Resources
-
-The *Server Resources* statistics section displays the resource information on this server including swap usage, free RAM, CPU utilization percentage,and FTS RAM used.
-
-.A query using the fluent API (lines are forced to wrap)
-[source,java]
+.Asciidoctor usage example, should contain 3 lines
+[source, ruby]
 ----
-[data-source-url=https://github.com/couchbase/docs-sdk-java/blob/20c44c9e7ca86ea475b7aa33c58d5670aa7c4495/modules/ROOT/pages/n1ql-queries-with-sdk.adoc#L53-L58]
-Statement statement = select("fname", "lname", "age").from(i("default")).where(x("age").gt(x("$age"))); // <1>
-JsonObject placeholderValues = JsonObject.create().put("age", 22);
-q = N1qlQuery.parameterized(statement, placeholderValues); // <2>
-for (N1qlQueryRow row : bkt.query(q)) { // <3>
-    System.out.println(row);
-}
-----
-<1> Defines the query.
-<2> Inserts placeholder values into the query.
-<3> Runs the query.
+doc = Asciidoctor::Document.new("*This* is it!", :header_footer => false)
 
-[#vbucket-stats]
-== Monitoring `vBucket` Resources
-
-[.table-ui,cols="1,3"]
-|===
-| Statistic | Description
-
-| new items per sec.
-a|
-Number of new items created in vBuckets within the specified state.
-
-NOTE: The new items per second is not valid for the Pending state.
-
-| ejections per sec.
-a|
-* Non-zero
-
-Number of items ejected per second within the vBuckets of the specified state.
-|===
-
-[#disk-stats]
-== Monitoring Disk Queues
-
-The *Disk Queues* statistics section displays the information for data being placed into the disk queue.
-
-[#dcp-stats]
-== Monitoring DCP Queues
-
-[#dcp-queues,cols="1,3"]
-|===
-| Statistic | Description
-
-| DCP connections
-| Number of internal replication DCP connections in this bucket.
-
-| DCP senders
-| Number of replication senders for this bucket.
-
-| DCP receivers
-| Number of replication receivers for this bucket.
-|===
-
-[#view-stats]
-== Monitoring View Statistics
-
-The *View Stats* show information about individual design documents within the selected bucket.
-
-[#index-stats]
-== Monitoring Index Statistics
-
-The INDEX STATS section provides statistics about the GSI Indexes.
-Statistics are provided per each individual index.
-
-Select `United States of America` from the menu.
-
-[#memcached-stats]
-== Memcached Buckets
-
-For Memcached buckets, Web Console displays a separate group of statistics:
-
-* Situation 1
- .. Client 1 queries view with `stale=false`
- .. Client 1 waits until server updates the index
- .. Client 2 queries view with `stale=false` while re-indexing from Client 1 still in progress
- .. Client 2 will wait until existing index process triggered by Client 1 completes.
-Client 2 gets updated index.
-* Situation 2
- .. Client 1 queries view with `stale=false`
- .. Client 1 waits until server updates the index
- .. Client 2 queries view with `stale=ok` while re-indexing from Client 1 in progress
- .. Client 2 will get the existing index
-* Situation 3
- .. Client 1 queries view with `stale=false`
- .. Client 1 waits until server updates the index
- .. Client 2 queries view with `stale=update_after`
- .. If re-indexing from Client 1 not done, Client 2 gets the existing index.
-If re-indexing from Client 1 is done, Client 2 gets this updated index and triggers re-indexing.
-
-Index updates may be stacked if multiple clients request the view be updated before the information is returned (`stale=false`).
-For `stale=update_after` queries, there is no stacking, since all updates occur after the query has been accessed.
-
-=== Sequential accesses
-
-. Client 1 queries view with stale=ok
-. Client 2 queries view with stale=false
-. View gets updated
-. Client 1 queries a second time view with stale=ok
-. Client 1 gets the updated view version
-
-==== View operations
-
-All views within Couchbase operate as follows:
-
-* Views are updated as the document data is updated in memory.
- ** Documents that are stored with an expiry are not automatically removed until the background expiry process removes them from the database.
-This means that expired documents may still exist within the index.
-  *** Views are scoped within a design document, with each design document part of a single bucket.
-   **** View names must be specified using one or more UTF-8 characters.
-You cannot have a blank view name.
-    ***** Document IDs that are not UTF-8 encodable are automatically filtered and not included in any view.
-The filtered documents are logged so that they can be identified.
-    ***** If you have a long view request, use POST instead of GET.
- ** Views can only access documents defined within their corresponding bucket.
-You cannot access or aggregate data from multiple buckets within a given view.
-  *** Views are created as part of a design document, and each design document exists within the corresponding named bucket.
-
-=== Automated index updates
-
-If `replicaUpdateMinChanges` is set to 0 (zero), then automatic updates are disabled for replica indexes.
-The trigger level can be configured both globally and for individual design documents for all indexes using the REST API.
-
-NOTE: The `ddocs` allow you to set `updateMinChanges` or `replicaUpdateMinChanges` only via options.
-The `updateInterval` can only be set for the whole cluster.
-
-To obtain the current view update daemon settings, access a node within the cluster on the administration port using the URL `\http://nodename:8091/settings/viewUpdateDaemon`:
-
-----
-GET http://Administrator:Password@nodename:8091/settings/viewUpdateDaemon
+puts doc.render
 ----
 
-----
-POST http://nodename:8091/settings/viewUpdateDaemon
-updateInterval=10000&updateMinChanges=7000
-----
+// FIXME: use ifdef to show output according to backend
+Here's what it outputs (using the built-in templates):
 
-[source,json5, role="no-callouts"]
-----
-{
-   "_id": "_design/myddoc",
-   "views": {
-      "view1": {
-          "map": "function(doc, meta) { if (doc.value) { emit(doc.value, meta.id);} }"
-      }
-   },
-   "options": {
-       "updateMinChanges": 1000,  //<.>
-       "replicaUpdateMinChanges": 20000
-   }
-}
-----
-<.> Disable callout test (add or remove `role="no-callouts"` from the above listin to test)
+....
+<div class="paragraph">
+  <p><strong>This</strong> is it!</p>
+</div>
+....
 
-You can set this information when creating and updating design documents through the design document REST API.
-To perform this operation using the `curl` tool:
+=== ``Quotes''
 
-[source,console]
-----
-$ curl -X POST -v -d 'updateInterval=7000&updateMinChanges=7000' \
-    'http://Administrator:Password@192.168.0.72:8091/settings/viewUpdateDaemon'
-----
+____
+AsciiDoc is 'so' *powerful*!
+____
 
-Partial-set development views are not automatically rebuilt.
+This verse comes to mind.
 
-=== Couchbase Kafka Connector 3.2.3 GA (2018-02-20)
+[verse]
+La la la
 
-Options are "DISABLED", "ENABLED", and "FORCED".
+Here's another quote:
 
-Issues resolved in this release:
+[quote, Sir Arthur Conan Doyle, The Adventures of Sherlock Holmes]
+____
+When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.
+____
 
-* https://issues.couchbase.com/browse/KAFKAC-89[KAFKAC-89]: [ENHANCEMENT] Enable NOOP for dead connection detection (Patrik Nordebo)
-* https://issues.couchbase.com/browse/KAFKAC-82[KAFKAC-82]: [FEATURE] Implement log redaction for Kafka Connector
-* https://issues.couchbase.com/browse/KAFKAC-90[KAFKAC-90]: [FEATURE] Source: Add config settings to enable compression
+.REPLACE_WITH_TABLE_TITLE
+[cols=3*, width="60%", options="header"]
+|====
+|Firefox
+|Web Browser
+|Software
 
-[source,xml]
-----
-<dependency>
-    <groupId>com.couchbase.client</groupId>
-    <artifactId>kafka-connect-couchbase</artifactId>
-    <version>3.2.3</version>
-</dependency>
-----
+|Ruby
+|Programming Language
+|Language
 
-http://packages.couchbase.com/clients/kafka/3.2.3/kafka-connect-couchbase-3.2.3.zip[kafka-connect-couchbase-3.2.3.zip]
+|TorqueBox
+|Application Server
+|Application
+|====
 
-== `spec.volumeClaimTemplates.metadata`
+Getting Literal [[literally]]
+-----------------------------
 
-This section demonstrates what happens when the section title does not have any natural wrap opportunities.
+ Want to get literal? Just prefix a line with a space (just one will do).
 
-== Testing level 2 nav
+....
+I'll join that party, too.
+....
 
-These changes are made in 02-on-this-page.js, which implements support for `:page-toclevels:`
-
-=== This is level2
-
-If a heading starts with 3 equals signs `===` it is level2.
-
-=== So is this
-
-==== But this is level 3
-
-This last section shouldn't show up in the nav.
-
-== Test external link
-
-http://amazon.com[Amazon^]
-
-https://amazon.com[Amazon, role="remove-ext-icon"]
-
-xref:landing-page.adoc[Test for external link icon, window="_blank", role="add-ext-icon"]
-
+[[google]]When all else fails, head over to <http://google.com>.

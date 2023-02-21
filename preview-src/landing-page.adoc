@@ -1,4 +1,4 @@
-= Couchbase Adoc
+= Redhat AsciiDoc
 :page-layout: landing-page
 :page-role: tiles
 :!sectids:

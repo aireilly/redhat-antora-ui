@@ -1,8 +1,8 @@
 <div class="components">
   {{#with (nav-group-for-page (nav-groups))}}
-  <div class="components_group-title">
+  <!--<div class="components_group-title">
     {{#if ./url}}<a href="{{relativize ./url}}">{{{./title}}}</a>{{else}}{{{./title}}}{{/if}}
-  </div>
+  </div>-->
   <ul class="components_list">
     {{#each ./components as |componentName|}}
     {{#with (lookup @root.site.components this)}}

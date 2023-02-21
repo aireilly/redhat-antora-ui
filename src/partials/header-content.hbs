@@ -4,14 +4,14 @@
           <nav class="navbar navbar-expand-md flex-nowrap justify-content-between navbar-new-top">
               <ul class="navbar-brand-list">
                 <li class="brand-logo">
-                  <a class="navbar-brand" href="https://www.couchbase.com">
-                    <img src="{{{uiRootPath}}}/img/couchbase-logo.svg" alt="Couchbase" />
+                  <a class="navbar-brand" href="https://www.docs.openshift.com">
+                    <img src="{{{uiRootPath}}}/img/redhat-documentation-logo.svg" alt="Red Hat" />
                   </a>
                 </li>
                 <li>
-                  <a class="navbar-brand cb-documentation" href="{{#with (and site.url site.homeUrl)}}{{{@root.site.url}}}{{{this}}}{{else}}{{{siteRootPath}}}{{/with}}">
-                    <img src="{{{uiRootPath}}}/img/cb-documentation.svg" alt="Couchbase Documentation" class="cb-docs" />
-                    <img src="{{{uiRootPath}}}/img/cb-docs-hover.svg" alt="Couchbase Documentation" class="hide cb-hover-docs" />
+                  <a class="navbar-brand rh-documentation" href="{{#with (and site.url site.homeUrl)}}{{{@root.site.url}}}{{{this}}}{{else}}{{{siteRootPath}}}{{/with}}">
+                    <img src="{{{uiRootPath}}}/img/rh-documentation.svg" alt="Red Hat Documentation" class="rh-docs" />
+                    <img src="{{{uiRootPath}}}/img/rh-docs-hover.svg" alt="Red Hat Documentation" class="hide rh-hover-docs" />
                   </a>
                 </li>
               </ul>
@@ -60,6 +60,7 @@
                   <input class="dataLayer query" type="text" placeholder="Search Docs"{{#if page.home}} autofocus{{/if}}><i class="fas fa-search"></i>
                 </div>
                 {{/if}}
+                <!--
                 <a class="btn btn-primary btn-grey-reverse" onclick="(window.dataLayer=window.dataLayer||[]).push({'event':'customEvent', 'category':'CTA', 'action':'Button Click',  'label':'Download'});" href="https://www.couchbase.com/downloads">
                   Downloads
                   <i class="far fa-arrow-to-bottom fa-fw"></i>
@@ -68,6 +69,7 @@
                   Start Free Trial
                   <i class="far fa-cloud fa-fw"></i>
                 </a>
+              -->
 
               </div>
 

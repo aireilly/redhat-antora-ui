@@ -1,10 +1,10 @@
-= Couchbase Tutorials
+= Red Hat Tutorials
 :page-layout: landing-page-tutorials
 :page-role: tiles
 :!sectids:
 
 
-= Couchbase Tutorials
+== Red Hat Tutorials
 ++++
 <div class="card-row">
 ++++
@@ -12,7 +12,7 @@
 [.column]
 ====== {empty}
 [.content]
-The Couchbase SDK allows applications to access a Couchbase cluster. It offers traditional synchronous APIs as well as scalable asynchronous APIs to maximize performance
+The Red Hat SDK allows applications to access a Red Hat cluster. It offers traditional synchronous APIs as well as scalable asynchronous APIs to maximize performance
 
 [.column]
 ====== {empty}

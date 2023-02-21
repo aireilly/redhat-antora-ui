@@ -1,4 +1,4 @@
-= Couchbase Tutorials
+= Red Hat Tutorials
 :page-layout: tutorials
 :page-role: tiles
 :!sectids:
@@ -38,7 +38,7 @@ xref:tutorials:mobile-travel-sample:csharp/design/data-modeling.adoc[C#]
 == Architect
 
 [.title]
-=== xref:tutorials:mobile-travel-sample:swift/design/data-modeling.adoc[Deploy Couchbase in Kubernetes]
+=== xref:tutorials:mobile-travel-sample:swift/design/data-modeling.adoc[Deploy Red Hat in Kubernetes]
 
 ==== {empty}
 [.summary]
@@ -59,7 +59,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan mi a ligu
 == DevOps
 
 [.title]
-=== xref:tutorials:mobile-travel-sample:swift/design/data-modeling.adoc[Couchbase CI/CD Best Practices]
+=== xref:tutorials:mobile-travel-sample:swift/design/data-modeling.adoc[Red Hat CI/CD Best Practices]
 
 ==== {empty}
 [.summary]
@@ -116,7 +116,7 @@ xref:python-sdk::sample-application.adoc[Python]
 
 ==== {empty}
 [.summary]
-In this tutorial, you will learn how to use Couchbase Lite in a Cordova plugin for an Ionic project targeting iOS and Android.
+In this tutorial, you will learn how to use Red Hat Lite in a Cordova plugin for an Ionic project targeting iOS and Android.
 The user Interface is written in JavaScript while the business logic and data model is written in native Swift/Java.
 [.links]
 xref:tutorials:hotel-lister:ios.adoc[Swift]
@@ -143,7 +143,7 @@ xref:tutorials:hotel-lister:android.adoc[Java]
 
 ==== {empty}
 [.summary]
-In this tutorial, you will learn how to use Couchbase Lite in a React Native project for iOS and Android.
+In this tutorial, you will learn how to use Red Hat Lite in a React Native project for iOS and Android.
 The user Interface is written in JavaScript while the business logic and data model is written in native Swift/Java.
 [.links]
 xref:tutorials:hotel-finder:ios.adoc[Swift]
@@ -170,7 +170,7 @@ xref:tutorials:hotel-finder:android.adoc[Java]
 
 ==== {empty}
 [.summary]
-This simple ToDo List application is built with Couchbase Lite 2.0 for iOS, Android, UWP and Xamarin (iOS, Android) platforms.
+This simple ToDo List application is built with Red Hat Lite 2.0 for iOS, Android, UWP and Xamarin (iOS, Android) platforms.
 Users can authenticate, create lists with tasks.
 Each task can have an optional blob (image) attached to it.
 Lists can be shared with multiple users.

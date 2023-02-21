@@ -1,5 +1,5 @@
 .header-top-row {
-  background: var(--color-brand-white);
+  background: var(--color-brand-primary);
   padding: 0 var(--width-container-gutter);
 }
 
@@ -72,11 +72,11 @@
 }
 
 .navbar.navbar-new-bottom {
-  background: var(--color-brand-blue-secondary);
+  background: var(--color-brand-primary);
 }
 
 .header-bottom-row {
-  background: var(--color-brand-blue-secondary);
+  background: var(--color-brand-primary);
   display: none;
   transition: all 0.3s;
 }
