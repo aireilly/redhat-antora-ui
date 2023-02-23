@@ -16,10 +16,14 @@ This is a demonstration of {library}. And this is the preamble of this document.
 This document exercises many of the features of AsciiDoc to test the {library} implementation.
 ****
 
+a command:
+
 [source,terminal]
 ----
 $ ls
 ----
+
+Some YAML:
 
 [source,yaml]
 ----
@@ -43,6 +47,8 @@ $ ls
      location: "a pear tree"
    turtle-doves: two
 ----
+
+Some JSON:
 
 [source,json]
 ----
